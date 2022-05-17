@@ -2,14 +2,24 @@ import { useState } from "react";
 
 export default function SearchBar(props) {
   const countriesSelect = document.getElementById('countries');
-  /*Add countries to the mb-4 */
-  props.selectCountry.map((country)=>{
+  
+  /*Add countries to the select*/
+  props.countriesToAdd.map((countryToAdd)=>{
     if (countriesSelect!==null) {
-      let option;
-      option = document.createElement("option");
-      option.text = country;
-      option.value = country;
-      countriesSelect.add(option);
+      var optionToAdd;
+      optionToAdd = document.createElement("option");
+      optionToAdd.text = countryToAdd;
+      optionToAdd.value = countryToAdd;
+      let test = false;
+      /*check that the country is not already an option of the select */
+      [].map.call(countriesSelect, (countrySelect)=>{
+        if(countrySelect.value === optionToAdd.value){
+          test = true;
+        };
+      });
+      if(!test){
+        countriesSelect.add(optionToAdd);
+      }
     }
   });
 
@@ -17,16 +27,13 @@ export default function SearchBar(props) {
     <div className="container">
       <ul>
         <h1 className="country__title">Country : </h1>
-        <div className="mb-4">
-          <select 
+        <div className="dropdown">
+        <select 
             name="countries" 
             id="countries"
             onChange={(event) => {
               props.onChange(event.target.value);
-            }}>
-            <option 
-              value='all'
-              >Country</option>
+            }}>            
           </select>
         </div>
       </ul>
