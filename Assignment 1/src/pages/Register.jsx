@@ -15,13 +15,17 @@ export default function Register() {
       })
       .then((countries) =>{setCountries(countries)});
   }, []);*/
-  const Http = new XMLHttpRequest();
-  const url = 'http://sefdb02.qut.edu.au:3001/countries' ;
-  Http.open("GET",url);
-  Http.send();
-  console.log(Http.responseText);
 
-  return (
+  const Http = new XMLHttpRequest();
+  const url='http://sefdb02.qut.edu.au:3001/countries';
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    setCountries(Http.responseText)
+  }
+
+  return ( 
     <main>
       <h1>{countries}</h1>
     </main>
