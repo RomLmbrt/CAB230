@@ -24,10 +24,11 @@ export default function Register() {
   Http.onreadystatechange = (e) => {
     setCountries(Http.responseText)
   }
+  console.log(countries);
 
   return ( 
     <main>
-      <h1>{countries}</h1>
+      <h1>{}</h1>
     </main>
   );
 }
