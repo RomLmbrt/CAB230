@@ -40,7 +40,7 @@ export default function VolcanoList() {
         in the Drama category
       </p>
       <SearchBar 
-        countriesToAdd={['Brisbane','London','Paris']} 
+        countriesToAdd={getCountries()} 
         onChange={setCountry} 
       />
       <div
@@ -61,4 +61,21 @@ export default function VolcanoList() {
       </div>
     </div>
   );
+}
+
+/*get the list of countries */
+function getCountries(){
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://sefdb02.qut.edu.au:3001/countries`)
+      .then((res) => res.json())
+      .then((res) => {
+        if ("error" in res) {
+          throw new Error(res.error.message);
+        }
+      })
+      .then((countries) =>{setCountries(countries)});
+  }, []);
+
 }
