@@ -3,29 +3,26 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function Register() {
-  const [countries, setCountries] = useState([]);
-
-  /*useEffect(() => {
-    fetch(`http://sefdb02.qut.edu.au:3001/countries`)
+  var [countries, setCountries] = useState([]);
+/*
+  useEffect(() => {
+      fetch(`http://sefdb02.qut.edu.au:3001/countries`)
       .then((res) => res.json())
-      .then((res) => {
-        if ("error" in res) {
-          throw new Error(res.error.message);
-        }
-      })
-      .then((countries) =>{setCountries(countries)});
+      .then((volcanoList) => {
+        setCountries(volcanoList);
+      });
   }, []);*/
 
   const Http = new XMLHttpRequest();
-  const url='http://sefdb02.qut.edu.au:3001/countries';
+  const url='https://jsonplaceholder.typicode.com/posts';
   Http.open("GET", url);
+  Http.responseType = 'list';
+  Http.onload = function() {
+    setCountries(Http.response);
+  };
   Http.send();
 
-  Http.onreadystatechange = (e) => {
-    setCountries(Http.responseText)
-  }
   console.log(countries);
-
   return ( 
     <main>
       <h1>{}</h1>
