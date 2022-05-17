@@ -14,7 +14,7 @@ export default function Register() {
   }, []);*/
 
   const Http = new XMLHttpRequest();
-  const url='https://jsonplaceholder.typicode.com/posts';
+  const url='http://sefdb02.qut.edu.au:3001/countries';
   Http.open("GET", url);
   Http.responseType = 'list';
   Http.onload = function() {
