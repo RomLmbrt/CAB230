@@ -40,7 +40,7 @@ export default function VolcanoList() {
         in the Drama category
       </p>
       <SearchBar 
-        selectCountry={['Brisbane','London','Paris']} 
+        countriesToAdd={['Brisbane','London','Paris']} 
         onChange={setCountry} 
       />
       <div
